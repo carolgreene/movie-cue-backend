@@ -9,3 +9,7 @@ spiderman = Movie.create(title: "Spiderman-Far From Home", genre: "adventure", r
 lion_king = Movie.create(title: "The Lion King", genre: "adventure", rating: "PG", description: "Remake of disney classic", runtime: 110)
 yesterday = Movie.create(title: "Yesterday", genre: "comedy", rating: "PG-13", description: "Guy wakes up and is in a world where nobody ever heard of the beatles. Only he knows their songs!", runtime: 112)
 
+
+review1 = Review.create(movie_id: 3, rating: 4, comments: "tons of fun!")
+review2 = Review.create(movie_id: 1, rating: 5, comments: "best movie ever!!")
+review3 = Review.create(movie_id: 2, rating: 4, comments: "great for the kids, but kind of scary!")
