@@ -10,7 +10,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   #GET /reviews/1
   def show 
-    render json @review
+    render json: @review
   end
 
   #POST /reviews
