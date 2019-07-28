@@ -5,7 +5,7 @@ class Api::V1::MoviesController < ApplicationController
   def index 
     @movies = Movie.all  
 
-    render json: @movies
+    render json: MovieSerializer.new(@movies)
   end
 
   #GET /movies/1
@@ -18,7 +18,7 @@ class Api::V1::MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save 
-      render json: @movie, status: :created, location: @movie 
+      render json: MovieSerializer.new(@movie), status: :created, location: @movie 
     else 
       render json: @movie.errors, status: :unprocessable_entity
     end 
