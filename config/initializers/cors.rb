@@ -5,9 +5,12 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
+#this tells you who you're going to allow access to this backend
+#cors-  cross origin resource sharing
+
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-    origins 'http://localhost:3000', 'http://localhost:3001'
+    origins 'http://localhost:3000', 'http://localhost:3001'    #can either whitelist or '*' will allow anyone to fetch data
 
      resource '*',
        headers: :any,
