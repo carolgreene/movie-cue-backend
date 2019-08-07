@@ -1,9 +1,9 @@
 class Api::V1::ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :update, :destroy]
+  before_action :set_movie, only: [:show, :update, :destroy, :index]
 
    #GET /reviews
    def index 
-    @reviews = Review.all  
+    @reviews = @movie.reviews  
 
     render json: ReviewSerializer.new(@reviews)
   end
@@ -40,8 +40,8 @@ class Api::V1::ReviewsController < ApplicationController
 
   private 
     #use callbacks to share common setup or constraints
-    def set_review 
-      @review = Review.find(params[:id])
+    def set_movie
+      @movie = Movie.find(params[:movie_id])
     end
 
     #Only allow trusted parameter "white list" through
