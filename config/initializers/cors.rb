@@ -10,7 +10,7 @@
 
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-    origins 'http://localhost:3000', 'http://localhost:3001'    #can either whitelist or '*' will allow anyone to fetch data
+    origins 'http://localhost:3000', 'http://localhost:3001', 'http://10.0.0.99:3000', 'http://10.0.0.99:3001'    #can either whitelist or '*' will allow anyone to fetch data
 
      resource '*',
        headers: :any,
