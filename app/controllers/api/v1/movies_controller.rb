@@ -3,14 +3,15 @@ class Api::V1::MoviesController < ApplicationController
 
   #GET /movies
   def index 
-    @movies = Movie.all  
-
+    @movies = Movie.all      
     render json: MovieSerializer.new(@movies)
   end
 
   #GET /movies/1
   def show 
-    render json: @movie
+    options = {include: [:reviews]}
+    serializedMovie = MovieSerializer.new(@movie, options).serialized_json
+    render json: serializedMovie
   end
 
   #POST /movies
