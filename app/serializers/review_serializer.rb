@@ -7,7 +7,8 @@ class ReviewSerializer
     {
       title: review.movie.title,
       genre: review.movie.genre,
-      rating: review.movie.rating
+      rating: review.movie.rating,
+      movie_id: review.movie_id
     }
 end
   
