@@ -1,5 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
-  before_action :set_movie, only: [:show, :update, :destroy, :index]
+  before_action :set_movie
 
    #GET /reviews
    def index 
@@ -15,12 +15,16 @@ class Api::V1::ReviewsController < ApplicationController
 
   #POST /reviews
   def create 
-    @review = Review.new(review_params)
+    #byebug    
+    @review = @movie.reviews.new(review_params)
 
     if @review.save 
-      render json: ReviewSerializer.new(@review), status: :created, location: @review
+      render json: MovieSerializer.new(@movie), status: :created
     else 
-      render json: @review.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @movie.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end 
   end
 
@@ -40,13 +44,13 @@ class Api::V1::ReviewsController < ApplicationController
 
   private 
     #use callbacks to share common setup or constraints
-    def set_movie
+    def set_movie      
       @movie = Movie.find(params[:movie_id])
     end
 
     #Only allow trusted parameter "white list" through
     def review_params 
-      params.require(:review).permit(:movie_id, :rating, :comment)
+      params.require(:review).permit(:movie_id, :rating, :comments)
     end
   
 end
