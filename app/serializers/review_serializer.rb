@@ -8,13 +8,8 @@ class ReviewSerializer
       title: review.movie.title,
       genre: review.movie.genre,
       rating: review.movie.rating,
-      movie_id: review.movie.id
-      
-      
+      movie_id: review.movie.id    #had .to_i but don't seem to need it   
     }
-end
-  
-
-
+  end
   
 end 
