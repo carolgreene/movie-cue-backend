@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #to make api to be movie_cue.com/api/v1/resource
   namespace :api do
     namespace :v1 do 
-      resources :reviews
+      #resources :reviews
       resources :movies do
         resources :reviews            #nested reviews inside of movies
       end
