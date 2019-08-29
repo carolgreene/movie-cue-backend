@@ -10,6 +10,8 @@ class Api::V1::ReviewsController < ApplicationController
 
   #GET /reviews/1
   def show 
+    #byebug
+    @review = Review.find(params[:id])
     render json: ReviewSerializer.new(@review)
   end
 
@@ -39,7 +41,11 @@ class Api::V1::ReviewsController < ApplicationController
 
   #DELETE /reviews/1
   def destroy 
+    #byebug 
+    @review = Review.find(params["id"])
+    @movie = Movie.find(@review.movie_id)
     @review.destroy 
+    render json: MovieSerializer.new(@movie)
   end
 
   private 
