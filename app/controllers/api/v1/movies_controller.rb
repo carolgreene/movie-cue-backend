@@ -28,7 +28,7 @@ class Api::V1::MoviesController < ApplicationController
     end 
   end
 
-  #PATCH/PUT movies/1
+  #PATCH/PUT movies/1  
   def update 
     if @movie.update(movie_params)
       render json: @movie
