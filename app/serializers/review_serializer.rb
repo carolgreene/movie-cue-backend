@@ -1,6 +1,6 @@
 class ReviewSerializer 
   include FastJsonapi::ObjectSerializer
-  attributes :rating, :comments
+  attributes :rating, :comments, :reviewer_name, :review_title
   belongs_to :movie, serializer: MovieSerializer
 
   attribute :movie do |review|

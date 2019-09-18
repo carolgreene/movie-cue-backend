@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_07_27_201053) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "movie_id"
+    t.text "reviewer_name"
+    t.text "review_title"
     t.integer "rating"
     t.text "comments"
     t.datetime "created_at", null: false

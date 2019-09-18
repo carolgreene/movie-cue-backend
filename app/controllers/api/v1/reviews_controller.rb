@@ -1,5 +1,6 @@
 class Api::V1::ReviewsController < ApplicationController
   before_action :set_movie
+  before_action :set_review, only: [:show]
 
    #GET /reviews
    def index 
@@ -11,8 +12,13 @@ class Api::V1::ReviewsController < ApplicationController
   #GET /reviews/1
   def show 
     #byebug
-    @review = Review.find(params[:id])
-    render json: ReviewSerializer.new(@review)
+    
+    #byebug
+    serializedReview = ReviewSerializer.new(@review, options).serialized_json
+    #@review = Review.find(params["id"])
+    #@movie = Movie.find(@review.movie_id)
+    #@review = @movie.review_id
+    render json: serializedReview
   end
 
   #POST /reviews
@@ -54,9 +60,13 @@ class Api::V1::ReviewsController < ApplicationController
       @movie = Movie.find(params[:movie_id])
     end
 
+    def set_review 
+      @review = Review.find(params["id"])
+    end
+
     #Only allow trusted parameter "white list" through
     def review_params 
-      params.require(:review).permit(:movie_id, :rating, :comments)
+      params.require(:review).permit(:movie_id, :reviewer_name, :review_title, :rating, :comments)
     end
   
 end

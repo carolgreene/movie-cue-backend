@@ -7,6 +7,8 @@ class MovieSerializer
   attribute :reviews do |movie|
     movie.reviews.map do |review|
       {
+      reviewer_name: review.reviewer_name,
+      review_title: review.review_title,
       rating: review.rating,
       comments: review.comments,
       id: review.id               #need this to pass :id as props from movieCard to reviewsContainer
