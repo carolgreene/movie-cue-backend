@@ -30,7 +30,7 @@ class Api::V1::ReviewsController < ApplicationController
       render json: MovieSerializer.new(@movie), status: :created
     else 
       error_resp = {
-        error: @movie.errors.full_messages.to_sentence
+        error: @review.errors.full_messages.to_sentence
       }
       render json: error_resp, status: :unprocessable_entity
     end 
