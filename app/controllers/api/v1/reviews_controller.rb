@@ -4,26 +4,18 @@ class Api::V1::ReviewsController < ApplicationController
 
    #GET /reviews
    def index 
-    @reviews = @movie.reviews  
-
+    @reviews = @movie.reviews 
     render json: ReviewSerializer.new(@reviews)
   end
 
   #GET /reviews/1
   def show 
-    #byebug
-    
-    #byebug
     serializedReview = ReviewSerializer.new(@review, options).serialized_json
-    #@review = Review.find(params["id"])
-    #@movie = Movie.find(@review.movie_id)
-    #@review = @movie.review_id
     render json: serializedReview
   end
 
   #POST /reviews
   def create 
-    #byebug    
     @review = @movie.reviews.new(review_params)
 
     if @review.save 
@@ -47,7 +39,6 @@ class Api::V1::ReviewsController < ApplicationController
 
   #DELETE /reviews/1
   def destroy 
-    #byebug 
     @review = Review.find(params["id"])
     @movie = Movie.find(@review.movie_id)
     @review.destroy 
