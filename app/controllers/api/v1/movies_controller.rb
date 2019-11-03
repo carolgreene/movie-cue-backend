@@ -31,17 +31,24 @@ class Api::V1::MoviesController < ApplicationController
   #PATCH/PUT movies/1  
   def update 
     if @movie.update(movie_params)
-      render json: @movie
+      render json: MovieSerializer.new(@movie), status: :ok
     else
-      render json: @movie.errors, status: unprocessable_entity
+      error_resp = {
+        error: @movie.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: unprocessable_entity
     end 
   end
 
   #DELETE /movies/1
   def destroy 
+    @movies = Movie.all
     @movie.destroy 
+    render json: MovieSerializer.new(@movies)
   end
 
+
+  
   private 
     #use callbacks to share common setup or constraints
     def set_movie 
