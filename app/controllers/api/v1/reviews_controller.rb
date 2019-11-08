@@ -10,7 +10,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   #GET /reviews/1
   def show 
-    serializedReview = ReviewSerializer.new(@review, options).serialized_json
+    serializedReview = ReviewSerializer.new(@review).serialized_json
     render json: serializedReview
   end
 
