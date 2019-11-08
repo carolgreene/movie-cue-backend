@@ -1,6 +1,6 @@
 class Api::V1::ReviewsController < ApplicationController
   before_action :set_movie
-  before_action :set_review, only: [:show]
+  before_action :set_review, only: [:show, :update, :destroy]
 
    #GET /reviews
    def index 
@@ -39,8 +39,6 @@ class Api::V1::ReviewsController < ApplicationController
 
   #DELETE /reviews/1
   def destroy 
-    @review = Review.find(params["id"])
-    @movie = Movie.find(@review.movie_id)
     @review.destroy 
     render json: MovieSerializer.new(@movie)
   end
